@@ -9,13 +9,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.bme.szotanulo.R
-import com.bme.szotanulo.databinding.EditFragmentBinding
-import com.bme.szotanulo.databinding.MainFragmentBinding
 import com.bme.szotanulo.databinding.PracticeFragmentBinding
-import com.bme.szotanulo.ui.edit.EditFragmentDirections
-import com.bme.szotanulo.ui.edit.EditViewModel
-import com.bme.szotanulo.ui.main.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PracticeFragment : Fragment() {
     private lateinit var binding: PracticeFragmentBinding
 

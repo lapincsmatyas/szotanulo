@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/editFragment"
-        android:name="com.bme.szotanulo.ui.edit.EditFragment"
+        android:name="com.bme.szotanulo.ui.addedit.AddEditFragment"
         android:label="@string/edit_fragment_label"
         tools:layout="@layout/edit_fragment">
         <action
