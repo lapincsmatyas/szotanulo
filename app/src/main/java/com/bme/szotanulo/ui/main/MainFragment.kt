@@ -4,13 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.bme.szotanulo.R
 import com.bme.szotanulo.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
-    private var _binding: MainFragmentBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: MainFragmentBinding
 
     private lateinit var viewModel: MainViewModel
 
@@ -19,15 +21,27 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.main_fragment,
+            container,
+            false
+        )
         viewModel = ViewModelProvider(this)[MainViewModel::class.java];
 
-        _binding = MainFragmentBinding.inflate(inflater, container, false)
+        binding.editButton.setOnClickListener{onEditButton()}
+        binding.practiceButton.setOnClickListener{onPracticeButton()}
+
         return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    private fun onEditButton(){
+        val action = MainFragmentDirections.actionMainFragmentToEditFragment();
+        findNavController().navigate(action)
+    }
 
-        _binding = null
+    private fun onPracticeButton(){
+        val action = MainFragmentDirections.actionMainFragmentToPracticeFragment();
+        findNavController().navigate(action)
     }
 }

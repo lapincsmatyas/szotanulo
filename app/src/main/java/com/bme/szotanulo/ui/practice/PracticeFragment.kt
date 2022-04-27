@@ -6,14 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.bme.szotanulo.R
+import com.bme.szotanulo.databinding.EditFragmentBinding
 import com.bme.szotanulo.databinding.MainFragmentBinding
 import com.bme.szotanulo.databinding.PracticeFragmentBinding
+import com.bme.szotanulo.ui.edit.EditFragmentDirections
+import com.bme.szotanulo.ui.edit.EditViewModel
 import com.bme.szotanulo.ui.main.MainViewModel
 
 class PracticeFragment : Fragment() {
-    private var _binding: PracticeFragmentBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: PracticeFragmentBinding
 
     private lateinit var viewModel: PracticeViewModel
 
@@ -22,15 +26,26 @@ class PracticeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.practice_fragment,
+            container,
+            false
+        )
         viewModel = ViewModelProvider(this)[PracticeViewModel::class.java];
 
-        _binding = PracticeFragmentBinding.inflate(inflater, container, false)
+        binding.mainButton.setOnClickListener{onMainButton()}
+        binding.editButton.setOnClickListener{onEditButton()}
+
         return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-        _binding = null
+    private fun onMainButton(){
+        val action = PracticeFragmentDirections.actionPracticeFragmentToMainFragment();
+        findNavController().navigate(action)
+    }
+    private fun onEditButton(){
+        val action = PracticeFragmentDirections.actionPracticeFragmentToEditFragment();
+        findNavController().navigate(action)
     }
 }
