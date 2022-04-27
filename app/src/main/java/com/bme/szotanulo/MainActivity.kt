@@ -1,4 +1,14 @@
 package com.bme.szotanulo
-import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity: AppCompatActivity()
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.bme.szotanulo.databinding.ActivityMainBinding
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+    }
+}
