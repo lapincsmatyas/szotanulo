@@ -1,4 +1,7 @@
-package com.bme.szotanulo.ui.edit;
+package com.bme.szotanulo.ui.edit
 
-public class EditActivity {
+import androidx.appcompat.app.AppCompatActivity
+
+class EditActivity : AppCompatActivity(){
+
 }

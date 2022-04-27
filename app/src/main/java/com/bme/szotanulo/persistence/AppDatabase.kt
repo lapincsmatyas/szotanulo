@@ -1,4 +1,3 @@
-package com.bme.szotanulo.persistence;
+package com.bme.szotanulo.persistence
 
-public class AppDatabase {
-}
+class AppDatabase 

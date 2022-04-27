@@ -1,4 +1,3 @@
-package com.bme.szotanulo.ui.practice;
+package com.bme.szotanulo.ui.practice
 
-public class PracticeRepository {
-}
+class PracticeRepository 

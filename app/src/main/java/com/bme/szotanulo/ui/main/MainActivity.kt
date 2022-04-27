@@ -1,4 +1,7 @@
-package com.bme.szotanulo.ui.main;
+package com.bme.szotanulo.ui.main
 
-public class MainActivity {
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
 }

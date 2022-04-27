@@ -1,4 +1,7 @@
-package com.bme.szotanulo.ui.practice;
+package com.bme.szotanulo.ui.practice
 
-public class PracticeActivity {
+import androidx.appcompat.app.AppCompatActivity
+
+class PracticeActivity : AppCompatActivity() {
+
 }

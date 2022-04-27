@@ -1,4 +1,3 @@
-package com.bme.szotanulo.ui.edit;
+package com.bme.szotanulo.ui.edit
 
-public class Edit {
-}
+class Edit 

@@ -1,4 +1,3 @@
-package com.bme.szotanulo.ui.main;
+package com.bme.szotanulo.ui.main
 
-public class MainViewModel {
-}
+class MainViewModel 

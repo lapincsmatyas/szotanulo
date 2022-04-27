@@ -1,4 +1,3 @@
-package com.bme.szotanulo.network;
+package com.bme.szotanulo.network
 
-public class SzotanuloService {
-}
+class SzotanuloService 
