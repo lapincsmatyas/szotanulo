@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.bme.szotanulo.databinding.FragmentMainBinding
+import com.bme.szotanulo.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
-    private var _binding: FragmentMainBinding? = null
+    private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var viewModel: MainViewModel
@@ -21,7 +21,7 @@ class MainFragment : Fragment() {
     ): View? {
         viewModel = ViewModelProvider(this)[MainViewModel::class.java];
 
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        _binding = MainFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
