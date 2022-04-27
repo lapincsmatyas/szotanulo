@@ -1,3 +1,7 @@
 package com.bme.szotanulo.ui.practice
 
-class PracticeViewModel 
+import androidx.lifecycle.ViewModel
+
+class PracticeViewModel : ViewModel() {
+    // TODO: Implement the ViewModel
+}
