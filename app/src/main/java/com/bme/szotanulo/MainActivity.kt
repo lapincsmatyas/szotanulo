@@ -1,7 +1,8 @@
 package com.bme.szotanulo
 import android.app.Application
+import androidx.appcompat.app.AppCompatActivity
 
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class SzotanuloApp: Application()
+class MainActivity: AppCompatActivity()
