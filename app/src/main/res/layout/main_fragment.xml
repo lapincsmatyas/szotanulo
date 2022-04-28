@@ -27,13 +27,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Edit" />
-
-            <TextView
-                android:id="@+id/cardsTextView"
-                android:layout_width="match_parent"
-                android:layout_height="622dp"
-                android:text="TextView" />
-
         </LinearLayout>
 
 
