@@ -32,8 +32,6 @@ class AddEditFragment : Fragment() {
         viewModel = ViewModelProvider(this)[AddEditViewModel::class.java];
 
         binding.mainButton.setOnClickListener{onMainButton()}
-        binding.mainButton.text = viewModel.card.value?.frontSide
-
         return binding.root
     }
 

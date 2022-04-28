@@ -12,7 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bme.szotanulo.R
 import com.bme.szotanulo.databinding.MainFragmentBinding
+import com.bme.szotanulo.model.Card
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
