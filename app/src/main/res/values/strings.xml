@@ -6,4 +6,6 @@
     <string name="main_fragment_label">Main</string>
     <string name="create_card">Kártya készítése</string>
     <string name="practice_fragment_label">Practice</string>
+    <string name="cancel">Mégsem</string>
+    <string name="create">Létrehozás</string>
 </resources>

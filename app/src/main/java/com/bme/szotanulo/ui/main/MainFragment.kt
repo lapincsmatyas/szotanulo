@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.bme.szotanulo.R
 import com.bme.szotanulo.databinding.MainFragmentBinding
 import com.bme.szotanulo.model.Card
+import com.bme.szotanulo.ui.practice.PracticeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -39,14 +40,19 @@ class MainFragment : Fragment() {
 
         val adapter = CardItemAdapter()
         binding.cardList.adapter = adapter
-
-        viewModel.response.observe(viewLifecycleOwner, Observer {
+        viewModel.response.observe(viewLifecycleOwner) {
             it?.let {
                 adapter.data = it
             }
-        })
+        }
 
+        binding.createButton.setOnClickListener{onCreateCard()}
 
         return binding.root
+    }
+
+    private fun onCreateCard(){
+        val action = MainFragmentDirections.actionMainFragmentToEditFragment();
+        findNavController().navigate(action)
     }
 }

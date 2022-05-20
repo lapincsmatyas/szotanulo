@@ -8,7 +8,7 @@ import java.util.*
 @Entity(tableName="card_table")
 data class Card(
     @PrimaryKey(autoGenerate = true)
-    var cardId: Long = 0L,
+    var id: Long = 0L,
 
     @ColumnInfo(name = "front_side")
     val frontSide: String,
