@@ -1,26 +1,39 @@
 package com.bme.szotanulo.ui.main
 
-import androidx.annotation.WorkerThread
-import com.bme.szotanulo.model.Card
-import com.bme.szotanulo.network.CardService
+import com.bme.szotanulo.network.CardApiService
 import com.bme.szotanulo.persistence.CardDao
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(
     private val cardDao: CardDao,
-    private val cardService: CardService
+    private val cardService: CardApiService
 ) {
+    /*
+    suspend fun getCards() {
+        withContext(Dispatchers.IO) {
+            val cards = cardDao.getAllCards()
+            if(cards.isEmpty()){
+                val data = cardService.getProperties()
+                cardDao.insertCards(data)
+            }
+        }
+    }
+
+     */
+
+    /*
     @WorkerThread
     fun getCards() = flow {
         val cards = cardDao.getAllCards()
         if(cards.isEmpty()){
             val data = cardService.getCards()
             cardDao.insertCards(data)
-            emit(data)
+            emit(data.size)
         }
-        emit(cards)
+        emit(cards.size)
     }.flowOn(Dispatchers.IO)
+
+     */
 }

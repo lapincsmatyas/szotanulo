@@ -4,5 +4,6 @@
 
     <string name="edit_fragment_label">Edit</string>
     <string name="main_fragment_label">Main</string>
+    <string name="create_card">Kártya készítése</string>
     <string name="practice_fragment_label">Practice</string>
 </resources>

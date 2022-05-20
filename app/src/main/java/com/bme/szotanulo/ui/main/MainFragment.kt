@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListAdapter
+import android.widget.ListView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bme.szotanulo.R
@@ -35,19 +37,16 @@ class MainFragment : Fragment() {
         )
         viewModel = ViewModelProvider(this)[MainViewModel::class.java];
 
-        binding.editButton.setOnClickListener{onEditButton()}
-        binding.practiceButton.setOnClickListener{onPracticeButton()}
+        val adapter = CardItemAdapter()
+        binding.cardList.adapter = adapter
+
+        viewModel.response.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.data = it
+            }
+        })
+
 
         return binding.root
-    }
-
-    private fun onEditButton(){
-        val action = MainFragmentDirections.actionMainFragmentToEditFragment();
-        findNavController().navigate(action)
-    }
-
-    private fun onPracticeButton(){
-        val action = MainFragmentDirections.actionMainFragmentToPracticeFragment();
-        findNavController().navigate(action)
     }
 }
