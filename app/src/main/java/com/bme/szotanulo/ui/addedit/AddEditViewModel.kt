@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bme.szotanulo.model.Card
 import com.bme.szotanulo.network.CardApiService
+import com.bme.szotanulo.repository.CardRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.util.*
@@ -14,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddEditViewModel @Inject constructor(
-    private val cardApiService: CardApiService
+    private val cardRepository: CardRepository
 ) : ViewModel() {
     var _frontText = MutableLiveData<String>("")
     var _backText = MutableLiveData<String>("")
@@ -31,7 +32,7 @@ class AddEditViewModel @Inject constructor(
             try {
                 card?.frontSide = _frontText.value
                 card?.backSide = _backText.value
-                cardApiService.createCard(card)
+                cardRepository.createCard(card!!)
             } catch (e: Exception) {
                 Log.e("Error", e.message.toString())
             }
@@ -42,13 +43,26 @@ class AddEditViewModel @Inject constructor(
         if (cardId != -1L) {
             viewModelScope.launch {
                 try {
-                    card = cardApiService.getCardById(cardId)
+                    card = cardRepository.getCardById(cardId)
                     _frontText.value = card?.frontSide!!
                     _frontText.value = card?.backSide!!
 
                 } catch (e: Exception) {
                     Log.e("Error", e.message.toString())
                 }
+            }
+        }
+    }
+
+    fun deleteCard() {
+        viewModelScope.launch {
+            try {
+                cardRepository.deleteCard(card!!)
+                _frontText.value = card?.frontSide!!
+                _frontText.value = card?.backSide!!
+
+            } catch (e: Exception) {
+                Log.e("Error", e.message.toString())
             }
         }
     }
