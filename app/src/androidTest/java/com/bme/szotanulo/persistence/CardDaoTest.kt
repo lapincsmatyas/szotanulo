@@ -73,4 +73,44 @@ class CardDaoTest {
         val allCards = dao.getCards().getOrAwaitValue()
         assertThat(allCards).isEmpty()
     }
+
+    @Test
+    fun insertOneCard () = runTest {
+        val card = Card(
+            id = 1,
+            frontSide = "testF",
+            backSide = "testB",
+            creationDate = Date(),
+            lastReviewedDate = Date()
+        )
+        dao.insertCard(card)
+
+        val allCards = dao.getCards().getOrAwaitValue()
+        assertThat(allCards).contains(card)
+    }
+
+
+    @Test
+    fun deleteOneCard () = runTest {
+        val card1 = Card(
+            id = 1,
+            frontSide = "testF",
+            backSide = "testB",
+            creationDate = Date(),
+            lastReviewedDate = Date()
+        )
+        val card2 = Card(
+            id = 2,
+            frontSide = "testF",
+            backSide = "testB",
+            creationDate = Date(),
+            lastReviewedDate = Date()
+        )
+        dao.insertCards(listOf(card1, card2))
+        dao.deleteByCardId(card1.id);
+
+        val allCards = dao.getCards().getOrAwaitValue()
+        assertThat(allCards).contains(card2)
+        assertThat(allCards).doesNotContain(card1)
+    }
 }
