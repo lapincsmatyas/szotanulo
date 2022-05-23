@@ -1,14 +1,18 @@
 package com.bme.szotanulo.network
 
 import com.bme.szotanulo.model.Card
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface CardApiService {
     @GET("cards")
     suspend fun getCards(): List<Card>
 
     @POST("cards")
-    suspend fun createCard(@Body card: Card): Card
+    suspend fun createCard(@Body card: Card?): Card
+
+    @GET("cards/{cardId}")
+    suspend fun getCardById(@Path("cardId") cardId: Long): Card?
+
+    @PATCH("cards/{cardId}")
+    suspend fun updateCard(@Path("cardId") cardId: Long, @Body card: Card)
 }

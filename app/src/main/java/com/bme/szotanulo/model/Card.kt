@@ -1,5 +1,6 @@
 package com.bme.szotanulo.model
 
+import androidx.databinding.Bindable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -11,14 +12,14 @@ data class Card(
     var id: Long = 0L,
 
     @ColumnInfo(name = "front_side")
-    val frontSide: String,
+    var frontSide: String?,
 
     @ColumnInfo(name = "back_side")
-    val backSide: String,
+    var backSide: String?,
 
     @ColumnInfo(name = "creation_date")
-    val creationDate: Date,
+    val creationDate: Date?,
 
     @ColumnInfo(name = "last_reviewed_date")
-    val lastReviewedDate: Date
+    val lastReviewedDate: Date?
 )

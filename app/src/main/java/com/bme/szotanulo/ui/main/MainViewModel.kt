@@ -1,37 +1,45 @@
 package com.bme.szotanulo.ui.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bme.szotanulo.model.Card
-import com.bme.szotanulo.network.CardApiService
+import com.bme.szotanulo.repository.CardRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val cardApiService: CardApiService
+    private val mainRepository: CardRepository
 ) : ViewModel() {
-    private val _response = MutableLiveData<List<Card>>()
+    val cards = mainRepository.cards
 
-    val response: LiveData<List<Card>>
-        get() = _response
+    private val _navigateToCardEdit = MutableLiveData<Long>()
+    val navigateToCardEdit
+        get() = _navigateToCardEdit
+
+    private var _networkError = MutableLiveData<Boolean>(false)
+    val networkError: LiveData<Boolean>
+        get() = _networkError
 
     init {
-        getCardList()
+        refreshCards()
     }
 
-    private fun getCardList(){
+    private fun refreshCards(){
         viewModelScope.launch {
             try {
-                _response.value = cardApiService.getCards()
-            } catch (e: Exception) {
-                Log.e("Error", e.message.toString())
-                _response.value = emptyList()
+                mainRepository.refreshCards()
+            } catch (networkError: IOException) {
+                if(cards.value.isNullOrEmpty())
+                    _networkError.value = true
             }
         }
+    }
+
+    fun onCardClicked(id: Long) {
+        _navigateToCardEdit.value = id
     }
 }

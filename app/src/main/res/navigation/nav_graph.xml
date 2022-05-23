@@ -33,6 +33,10 @@
         android:name="com.bme.szotanulo.ui.addedit.AddEditFragment"
         android:label="@string/edit_fragment_label"
         tools:layout="@layout/edit_fragment">
+        <argument
+            android:name="cardId"
+            app:argType="long"
+            android:defaultValue="-1L" />
         <action
             android:id="@+id/action_editFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
