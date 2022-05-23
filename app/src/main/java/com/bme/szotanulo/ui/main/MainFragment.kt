@@ -63,7 +63,9 @@ class MainFragment : Fragment() {
         })
 
         viewModel.networkError.observe(viewLifecycleOwner) {
-            Toast.makeText(activity, "Network Error", Toast.LENGTH_LONG).show()
+            if(it) {
+                Toast.makeText(activity, "Network Error", Toast.LENGTH_LONG).show()
+            }
         }
 
         return binding.root

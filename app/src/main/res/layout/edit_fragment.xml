@@ -4,16 +4,9 @@
 
     <data>
         <variable
-            name="card"
-            type="com.bme.szotanulo.model.Card"/>
+            name="viewmodel"
+            type="com.bme.szotanulo.ui.addedit.AddEditViewModel"/>
 
-        <variable
-            name="frontSideText"
-            type="String"/>
-
-        <variable
-            name="backSideText"
-            type="String"/>
     </data>
 
     <FrameLayout
@@ -39,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="@={frontSideText}"/>
+                android:text="@={viewmodel._frontText}"/>
 
             <TextView
                 android:id="@+id/textView2"
@@ -54,7 +47,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 tools:ignore="SpeakableTextPresentCheck"
-                android:text="@={backSideText}"/>
+                android:text="@={viewmodel._backText}"/>
 
             <Button
                 android:id="@+id/create_button"

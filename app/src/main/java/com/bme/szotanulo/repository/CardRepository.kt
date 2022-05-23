@@ -17,7 +17,10 @@ class CardRepository @Inject constructor(
     suspend fun refreshCards() {
         withContext(Dispatchers.IO) {
             val cards = cardService.getCards()
-            cardDatabase.cardDao().insertCards(cards)
+            if(!cards.isEmpty()) {
+                cardDatabase.cardDao().deleteAllCards()
+                cardDatabase.cardDao().insertCards(cards)
+            }
         }
     }
 }
