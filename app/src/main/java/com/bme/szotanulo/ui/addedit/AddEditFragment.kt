@@ -31,11 +31,18 @@ class AddEditFragment : Fragment() {
         )
         viewModel = ViewModelProvider(this)[AddEditViewModel::class.java];
 
-        binding.mainButton.setOnClickListener{onMainButton()}
+        binding.createButton.setOnClickListener{onCreateButton()}
+        binding.cancelButton.setOnClickListener{onCancelButton()}
         return binding.root
     }
 
-    private fun onMainButton(){
+    private fun onCreateButton(){
+        viewModel.createCard();
+        val action = AddEditFragmentDirections.actionEditFragmentToMainFragment();
+        findNavController().navigate(action)
+    }
+
+    private fun onCancelButton(){
         val action = AddEditFragmentDirections.actionEditFragmentToMainFragment();
         findNavController().navigate(action)
     }

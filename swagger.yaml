@@ -1,0 +1,146 @@
+swagger: "2.0"
+info:
+  description: "This is a documentation of the finctional API for the Szótanuló application."
+  version: "1.0.0"
+  title: "Szótanuló App"
+  contact:
+    email: "lapincs.matyas@gmail.com"
+tags:
+- name: "card"
+schemes:
+- "http"
+paths:
+  /card:
+    get:
+      tags:
+      - "card"
+      summary: "Get all existing cards"
+      description: "Returns all available cards from the deck." 
+      operationId: "getAllCards"
+      produces: 
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+           type: "array"
+           items:
+            $ref: "#/definitions/Card"
+    post:
+      tags:
+      - "card"
+      summary: "Create a new card"
+      description: "Creates card with the given data from the body"
+      operationId: "createCard"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Card object that needs to be added to the deck"
+        required: true
+        schema:
+          $ref: "#/definitions/Card"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Card"
+        "405":
+          description: "Invalid input"
+  /card/{cardId}:
+    get:
+      tags:
+      - "card"
+      summary: "Find card ID"
+      description: "Returns a single card"
+      operationId: "getCardById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "cardId"
+        in: "path"
+        description: "ID of card to return"
+        required: true
+        type: "number"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Card"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Card not found"
+    patch:
+      tags:
+      - "card"
+      summary: "Updates a card in the store with form data"
+      description: ""
+      operationId: "updateCardWithForm"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "cardId"
+        in: "path"
+        description: "ID of card that needs to be updated"
+        required: true
+        type: "number"
+      - name: "data"
+        in: "body"
+        description: "Updated data of the card"
+        required: false
+        schema:
+          $ref: "#/definitions/Card"
+      responses:
+        "200":
+         description: "successful operation"
+         schema:
+          $ref: "#/definitions/Card"
+        "405":
+          description: "Invalid input"
+    delete:
+      tags:
+      - "card"
+      summary: "Deletes a card"
+      description: ""
+      operationId: "deleteCard"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "cardId"
+        in: "path"
+        description: "Card id to delete"
+        required: true
+        type: "number"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Card not found"
+definitions:
+  Card:
+    type: "object"
+    required:
+    - "id"
+    - "frontSide"
+    - "backSide"
+    - "creationDate"
+    - "lastReviewedDate"
+    properties:
+      id:
+        type: "number"
+      frontSide:
+        type: "string"
+        example: "apple"
+      backSide:
+        type: "string"
+        example: "alma"
+      creationDate:
+        type: "object"
+      lastReviewedDate:
+        type: "object"

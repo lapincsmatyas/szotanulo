@@ -17,7 +17,7 @@ interface CardDao {
     @Update
     fun update(card: Card)
 
-    @Query("SELECT * from card_table WHERE cardId = :key")
+    @Query("SELECT * from card_table WHERE id = :key")
     fun get(key: Long): Card?
 
     @Query("SELECT * FROM card_table")

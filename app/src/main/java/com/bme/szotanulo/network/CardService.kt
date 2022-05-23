@@ -1,11 +1,14 @@
 package com.bme.szotanulo.network
 
 import com.bme.szotanulo.model.Card
-import java.util.*
-import javax.inject.Inject
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
 
-class CardService @Inject constructor() {
-    fun getCards(): List<Card>{
-        return listOf(Card(frontSide = "apple", backSide = "alma", creationDate = Date(), lastReviewedDate = Date()))
-    }
+interface CardApiService {
+    @GET("cards")
+    suspend fun getCards(): List<Card>
+
+    @POST("cards")
+    suspend fun createCard(@Body card: Card): Card
 }
