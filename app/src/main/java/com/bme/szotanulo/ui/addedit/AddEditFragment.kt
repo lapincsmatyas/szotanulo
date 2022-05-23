@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bme.szotanulo.R
 import com.bme.szotanulo.databinding.EditFragmentBinding
@@ -31,8 +32,19 @@ class AddEditFragment : Fragment() {
         )
         viewModel = ViewModelProvider(this)[AddEditViewModel::class.java];
 
+        val args = AddEditFragmentArgs.fromBundle(requireArguments())
+
         binding.createButton.setOnClickListener{onCreateButton()}
         binding.cancelButton.setOnClickListener{onCancelButton()}
+
+        viewModel.backSideText.observe(viewLifecycleOwner, Observer { newValue ->
+            binding.backSideText = newValue
+        })
+        viewModel.frontSideText.observe(viewLifecycleOwner, Observer { newValue ->
+            binding.frontSideText = newValue
+        })
+
+        viewModel.initCard(args.cardId);
         return binding.root
     }
 

@@ -3,7 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="card"
+            type="com.bme.szotanulo.model.Card"/>
 
+        <variable
+            name="frontSideText"
+            type="String"/>
+
+        <variable
+            name="backSideText"
+            type="String"/>
     </data>
 
     <FrameLayout
@@ -16,6 +26,36 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/front"
+                />
+
+            <EditText
+                android:id="@+id/front_page_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@={frontSideText}"/>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/back" />
+
+            <EditText
+                android:id="@+id/back_page_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:text="@={backSideText}"/>
+
             <Button
                 android:id="@+id/create_button"
                 android:layout_width="match_parent"
@@ -27,6 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/cancel" />
+
         </LinearLayout>
     </FrameLayout>
 </layout>

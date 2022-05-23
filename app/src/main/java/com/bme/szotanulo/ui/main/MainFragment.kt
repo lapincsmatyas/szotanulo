@@ -4,20 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ListAdapter
-import android.widget.ListView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.bme.szotanulo.R
 import com.bme.szotanulo.databinding.MainFragmentBinding
-import com.bme.szotanulo.model.Card
-import com.bme.szotanulo.ui.practice.PracticeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
+
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
@@ -38,15 +35,36 @@ class MainFragment : Fragment() {
         )
         viewModel = ViewModelProvider(this)[MainViewModel::class.java];
 
-        val adapter = CardItemAdapter()
+        val adapter = CardItemAdapter(CardListener { cardId ->
+            Toast.makeText(context, "${cardId}", Toast.LENGTH_LONG).show()
+            viewModel.onCardClicked(cardId)
+        })
+
         binding.cardList.adapter = adapter
-        viewModel.response.observe(viewLifecycleOwner) {
+        binding.cardList.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
+
+        viewModel.cards.observe(viewLifecycleOwner) {
             it?.let {
-                adapter.data = it
+                adapter.submitList(it)
             }
         }
 
         binding.createButton.setOnClickListener{onCreateCard()}
+
+        viewModel.navigateToCardEdit.observe(viewLifecycleOwner, Observer { card ->
+            card?.let {
+                this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToEditFragment(card))
+            }
+        })
+
+        viewModel.networkError.observe(viewLifecycleOwner) {
+            Toast.makeText(activity, "Network Error", Toast.LENGTH_LONG).show()
+        }
 
         return binding.root
     }

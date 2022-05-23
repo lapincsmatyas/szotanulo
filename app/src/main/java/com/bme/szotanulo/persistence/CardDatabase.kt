@@ -9,4 +9,5 @@ import com.bme.szotanulo.model.Card
 @TypeConverters(Converters::class)
 abstract class CardDatabase : RoomDatabase() {
     abstract fun cardDao(): CardDao
+
 }
