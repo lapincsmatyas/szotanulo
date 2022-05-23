@@ -35,12 +35,19 @@ class AddEditFragment : Fragment() {
         val args = AddEditFragmentArgs.fromBundle(requireArguments())
 
         binding.createButton.setOnClickListener{onCreateButton()}
+        binding.deleteButton.setOnClickListener{onDeleteButton()}
         binding.cancelButton.setOnClickListener{onCancelButton()}
 
         binding.viewmodel = viewModel
 
         viewModel.initCard(args.cardId);
         return binding.root
+    }
+
+    private fun onDeleteButton() {
+        viewModel.deleteCard();
+        val action = AddEditFragmentDirections.actionEditFragmentToMainFragment();
+        findNavController().navigate(action)
     }
 
     private fun onCreateButton(){
