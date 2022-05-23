@@ -37,12 +37,7 @@ class AddEditFragment : Fragment() {
         binding.createButton.setOnClickListener{onCreateButton()}
         binding.cancelButton.setOnClickListener{onCancelButton()}
 
-        viewModel.backSideText.observe(viewLifecycleOwner, Observer { newValue ->
-            binding.backSideText = newValue
-        })
-        viewModel.frontSideText.observe(viewLifecycleOwner, Observer { newValue ->
-            binding.frontSideText = newValue
-        })
+        binding.viewmodel = viewModel
 
         viewModel.initCard(args.cardId);
         return binding.root

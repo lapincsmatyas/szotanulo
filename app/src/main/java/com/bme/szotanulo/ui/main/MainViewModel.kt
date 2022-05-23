@@ -20,7 +20,7 @@ class MainViewModel @Inject constructor(
     val navigateToCardEdit
         get() = _navigateToCardEdit
 
-    private var _networkError = MutableLiveData<Boolean>(false)
+    private var _networkError = MutableLiveData(false)
     val networkError: LiveData<Boolean>
         get() = _networkError
 

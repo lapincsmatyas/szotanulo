@@ -16,12 +16,8 @@ import javax.inject.Inject
 class AddEditViewModel @Inject constructor(
     private val cardApiService: CardApiService
 ) : ViewModel() {
-    private val _backSideText = MutableLiveData<String?>()
-    val backSideText: LiveData<String?>
-        get() = _backSideText
-    private val _frontSideText = MutableLiveData<String?>()
-    val frontSideText: LiveData<String?>
-        get() = _frontSideText
+    var _frontText = MutableLiveData<String>("")
+    var _backText = MutableLiveData<String>("")
 
     var card: Card? = Card(
         frontSide = "",
@@ -30,16 +26,11 @@ class AddEditViewModel @Inject constructor(
         lastReviewedDate = Date()
     )
 
-    init {
-        _frontSideText.value = card?.backSide
-        _backSideText.value = card?.backSide
-    }
-
     fun createCard() {
         viewModelScope.launch {
             try {
-                card?.frontSide = frontSideText.value
-                card?.backSide = backSideText.value
+                card?.frontSide = _frontText.value
+                card?.backSide = _backText.value
                 cardApiService.createCard(card)
             } catch (e: Exception) {
                 Log.e("Error", e.message.toString())
@@ -52,8 +43,9 @@ class AddEditViewModel @Inject constructor(
             viewModelScope.launch {
                 try {
                     card = cardApiService.getCardById(cardId)
-                    _frontSideText.value = card?.frontSide
-                    _backSideText.value = card?.backSide
+                    _frontText.value = card?.frontSide!!
+                    _frontText.value = card?.backSide!!
+
                 } catch (e: Exception) {
                     Log.e("Error", e.message.toString())
                 }
