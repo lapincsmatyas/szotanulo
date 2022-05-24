@@ -17,6 +17,6 @@ interface CardApiService {
     suspend fun updateCard(@Path("cardId") cardId: Long, @Body card: Card): Card?
 
     @DELETE("cards/{cardId}")
-    suspend fun deleteCard(@Path("cardId") cardId: Long): Card
+    suspend fun deleteCard(@Path("cardId") cardId: Long): Boolean
 
 }
