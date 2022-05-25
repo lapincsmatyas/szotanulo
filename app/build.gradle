@@ -5,9 +5,22 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
 
     id 'kotlin-kapt'
+
     id 'dagger.hilt.android.plugin'
+
+    id 'jacoco'
+    id 'com.google.gms.google-services'
 }
 
+configurations.all {
+    resolutionStrategy {
+        eachDependency {
+            if ("org.jacoco" == requested.group) {
+                useVersion("0.8.7")
+            }
+        }
+    }
+}
 android {
     compileSdk 32
 
@@ -26,7 +39,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-
+        debug {
+            testCoverageEnabled = true
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -51,6 +66,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.test:runner:1.4.0'
+    implementation 'com.google.firebase:firebase-common-ktx:20.1.1'
 
 
     // Instrumented Unit Tests
@@ -81,4 +97,12 @@ dependencies {
     //Retrofit + Moshi
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:29.3.0')
+
+    // Declare the dependency for the Analytics library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.0.0'
+
 }

@@ -8,6 +8,9 @@ import androidx.lifecycle.viewModelScope
 import com.bme.szotanulo.model.Card
 import com.bme.szotanulo.network.CardApiService
 import com.bme.szotanulo.repository.CardRepository
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.util.*
@@ -20,6 +23,9 @@ class AddEditViewModel @Inject constructor(
     var _frontText = MutableLiveData<String>("")
     var _backText = MutableLiveData<String>("")
 
+    private val firebaseAnalytics = Firebase.analytics
+
+
     var card: Card? = Card(
         frontSide = "",
         backSide = "",
@@ -28,6 +34,8 @@ class AddEditViewModel @Inject constructor(
     )
 
     fun createCard() {
+        firebaseAnalytics.logEvent("card_created", null)
+
         viewModelScope.launch {
             try {
                 card?.frontSide = _frontText.value
@@ -40,6 +48,8 @@ class AddEditViewModel @Inject constructor(
     }
 
     fun initCard(cardId: Long) {
+        firebaseAnalytics.logEvent("card_opened", null)
+
         if (cardId != -1L) {
             viewModelScope.launch {
                 try {
@@ -55,6 +65,7 @@ class AddEditViewModel @Inject constructor(
     }
 
     fun deleteCard() {
+        firebaseAnalytics.logEvent("card_deleted", null)
         viewModelScope.launch {
             try {
                 cardRepository.deleteCard(card!!)

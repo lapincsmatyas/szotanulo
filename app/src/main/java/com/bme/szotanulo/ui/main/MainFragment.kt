@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.bme.szotanulo.R
 import com.bme.szotanulo.databinding.MainFragmentBinding
+import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -21,6 +22,8 @@ class MainFragment : Fragment() {
     private lateinit var binding: MainFragmentBinding
 
     private lateinit var viewModel: MainViewModel
+
+    private lateinit var mFirebaseAnalytics: FirebaseAnalytics
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +37,9 @@ class MainFragment : Fragment() {
             false
         )
         viewModel = ViewModelProvider(this)[MainViewModel::class.java];
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(requireContext());
+
 
         val adapter = CardItemAdapter(CardListener { cardId ->
             Toast.makeText(context, "${cardId}", Toast.LENGTH_LONG).show()

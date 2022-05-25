@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "546215809114",
+    "project_id": "szotanulo-115dc",
+    "storage_bucket": "szotanulo-115dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546215809114:android:9a60fb0f0a9f6d63610863",
+        "android_client_info": {
+          "package_name": "com.bme.szotanulo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546215809114-l86o2ijkcjr5is9fretsbm48kvld5rrj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCvopkfci3oH3kBLRqkQZpyBFVCR4Rb6k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546215809114-l86o2ijkcjr5is9fretsbm48kvld5rrj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
