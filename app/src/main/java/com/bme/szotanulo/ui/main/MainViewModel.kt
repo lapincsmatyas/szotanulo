@@ -35,19 +35,22 @@ class MainViewModel @Inject constructor(
         refreshCards()
     }
 
-    private fun refreshCards(){
+    private fun refreshCards() {
         firebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM_LIST, null)
         viewModelScope.launch {
             try {
                 mainRepository.refreshCards()
             } catch (networkError: IOException) {
-                if(cards.value.isNullOrEmpty())
+                if (cards.value.isNullOrEmpty())
                     _networkError.value = true
             }
         }
     }
 
     fun onCardClicked(id: Long) {
+
+        throw RuntimeException("Test Crash"); // Force a crash
+
         _navigateToCardEdit.value = id
     }
 }
