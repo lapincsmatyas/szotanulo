@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bme.szotanulo">
 
+
     <application
         android:name=".SzotanuloApplication"
         android:allowBackup="true"

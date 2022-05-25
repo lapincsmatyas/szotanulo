@@ -1,32 +1,11 @@
 {
   "cards": [
     {
-      "id": 1,
-      "frontSide": "apple",
-      "backSide": "alma",
-      "creationDate": "Apr 5, 2022 12:00:00 AM",
-      "lastReviewedDate": "Apr 5, 2022 12:00:00 AM"
-    },
-    {
-      "id": 2,
-      "frontSide": "table",
-      "backSide": "asztal",
-      "creationDate": "2022-04-05",
-      "lastReviewedDate": "2022-04-05"
-    },
-    {
-      "id": 3,
-      "frontSide": "banana",
-      "backSide": "banán",
-      "creationDate": "2022-04-05",
-      "lastReviewedDate": "2022-04-05"
-    },
-    {
-      "id": 4,
-      "frontSide": "dog",
-      "backSide": "kutya",
-      "creationDate": "2022-04-05",
-      "lastReviewedDate": "2022-04-05"
+      "backSide": "teszt",
+      "creationDate": "May 24, 2022 7:10:46 PM",
+      "frontSide": "test",
+      "id": 6,
+      "lastReviewedDate": "May 24, 2022 7:10:46 PM"
     }
   ]
 }
